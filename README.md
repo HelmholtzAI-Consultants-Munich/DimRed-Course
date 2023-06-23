@@ -6,4 +6,6 @@ Topics that will be covered:
 
 - Dimensionality reduction - showcasing how methods work on the real dataset
 - Feature selection 
-- Stability assessment
+- Feature selection stability analysis
+
+
