@@ -1,11 +1,11 @@
 # Dimensionality reduction course
 
-Material for the dimensionality reduction course.
+Material for the dimensionality reduction course (work in progress).
 
-Topics that will be covered:
+This tutorial aims to show how to perform dimensionality reduction in practice.
 
-- Dimensionality reduction - showcasing how methods work on the real dataset
-- Feature selection 
-- Feature selection stability analysis
+See pdf for introductory slides (will be extended).
+
+
 
 
