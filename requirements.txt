@@ -2,6 +2,7 @@ matplotlib
 numpy
 pandas
 scikit-learn
+scikit-learn-extra
 umap-learn
 cca-zoo
 seaborn
