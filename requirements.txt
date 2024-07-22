@@ -7,3 +7,7 @@ umap-learn
 cca-zoo
 seaborn
 ReliefF
+keras
+torch
+
+
