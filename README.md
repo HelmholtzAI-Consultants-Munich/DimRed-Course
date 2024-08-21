@@ -1,6 +1,6 @@
 # A practical guide to dimensionality reduction
 
-This course aims to show how to perform dimensionality reduction in practice. Please go to the notebooks folder and open notebook 1_feature_transformation.ipynb. Your mentor will give you further instructions.
+This course aims to show how to perform dimensionality reduction in practice. **Please go to the notebooks folder and open the notebook 1_feature_transformation.ipynb**. Your mentor will give you further instructions.
 
 It is recommended to use Google colab to run the notebooks (Google account required). For that, just follow the link within the notebook.
 
