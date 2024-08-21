@@ -6,7 +6,7 @@ It is recommended to use Google colab to run the notebooks (Google account requi
 
 Alternatively, you can set up an environment on your own machine as follows, but please note that due to time restrictions, mentors cannot provide help with installation issues during the course.
 
-Setup steps (*not needed for colab users*):
+Setup steps (**not needed for colab users**):
 
 - Clone or download the repo
 - Run the following commands in a terminal
