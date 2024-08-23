@@ -23,7 +23,7 @@ def plot_components(data_transformed, j=0, k=1, tissuelegend=True, legendloc="up
 def compute_neighbor_confusion(dist1, dist2, k=4):
     np.fill_diagonal(dist1, np.inf)
     np.fill_diagonal(dist2, np.inf)
-    confusion_matrix = np.zeros((2, 2))
+    confusion_matrix = np.zeros((2, 2), dtype=np.int8)
     
     for i in range(dist1.shape[0]):
         s1 = np.argsort(dist1[i,])
