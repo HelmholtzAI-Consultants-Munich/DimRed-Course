@@ -1,10 +1,10 @@
 # A practical guide to dimensionality reduction
 
-This course aims to show how to perform dimensionality reduction in practice. **Please go to the notebooks folder and open the notebook 1_feature_transformation.ipynb**. Your mentor will give you further instructions.
+This course aims at showcasing how to perform dimensionality reduction in practice. **Please go to the notebooks folder and open the notebook 1_feature_transformation.ipynb**. Your mentor will give you further instructions.
 
-It is recommended to use Google colab to run the notebooks (Google account required). For that, just follow the link within the notebook.
+**To run the notebook, it is recommended to use Google Colab (Google account required). For that, just follow the link within the notebook and ignore the rest of this README file.**
 
-Alternatively, you can set up an environment on your own machine as follows, but please note that due to time restrictions, mentors cannot provide help with installation issues during the course.
+Alternatively, you can set up an environment on your own machine as follows, but please note that you need to have conda commands installed for that (e.g., from miniforge). Due to time restrictions, mentors cannot provide help with installation issues during the course.
 
 Setup steps (**not needed for colab users**):
 

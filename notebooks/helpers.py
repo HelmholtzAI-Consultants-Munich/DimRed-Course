@@ -4,14 +4,15 @@ import matplotlib.pyplot as plt
 
 
 
-def plot_components(data_transformed, j=0, k=1, tissuelegend=True, legendloc="upper right", 
+def plot_components(data_transformed, j=0, k=1, tissuelegend=True, legendloc="upper right", axislabel="Component", title="",
                     data_with_labels = pd.read_csv("../data/tomato_with_targets.txt", index_col=0), 
                     tissue_dict = {'floral': 'gold', 'leaf': 'chartreuse', 'root': 'gray', 'sdling': 'mediumseagreen', 'stem': 'darkgreen', 'veg': 'purple'}, 
                     species_condition_dict = {'penn.Sun': 's', 'penn.Sh': 'd', 'M82.Sun': '^', 'M82.Sh': 'v'}):
     for i in range(0,data_transformed.shape[0]):
         plt.scatter(data_transformed[i,j], data_transformed[i,k], marker=species_condition_dict['.'.join([data_with_labels.iloc[i]['species'], data_with_labels.iloc[i]['position']])], c=tissue_dict[data_with_labels.iloc[i]['tissue']])
-    plt.xlabel("Component {}".format(j)) 
-    plt.ylabel("Component {}".format(k))
+    plt.xlabel("{0} {1}".format(axislabel, j))  
+    plt.ylabel("{0} {1}".format(axislabel, k))
+    plt.suptitle("{}".format(title))
     if tissuelegend:
         plt.legend(tissue_dict, loc=legendloc)
     else:
