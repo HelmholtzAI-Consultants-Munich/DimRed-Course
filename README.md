@@ -6,7 +6,7 @@ This course aims at showcasing how to perform dimensionality reduction in practi
 
 Alternatively, you can set up an environment on your own machine as follows, but please note that you need to have conda commands installed for that (e.g., from miniforge). Due to time restrictions, mentors cannot provide help with installation issues during the course.
 
-Setup steps (**not needed for colab users**):
+Setup steps (**not needed for Colab users**):
 
 - Clone or download the repo
 - Run the following commands in a terminal
