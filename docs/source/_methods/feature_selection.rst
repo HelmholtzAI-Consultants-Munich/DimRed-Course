@@ -104,9 +104,29 @@ objective that steers it toward simpler, more generalizable solutions. The cours
 example is **elastic net**, a regularized regression that combines two penalties: an
 **L1** penalty that drives many coefficients to exactly zero and so selects features,
 and an **L2** penalty that shrinks the coefficients of correlated features toward one
-another, so that correlated features tend to be kept or dropped together. A trade-off
-parameter balances the two penalties, and because the model is linear, its selected
-features split neatly into positive and negative predictors of the class.
+another, so that correlated features tend to be kept or dropped together.
+
+The model the course actually fits, elastic-net logistic regression, makes this
+precise. Writing :math:`w` for the vector of feature coefficients and :math:`c` for the
+intercept, training chooses them to minimize
+
+.. math::
+
+   \min_{w,\,c}\;\;
+   C\sum_{i=1}^{n}\log\!\bigl(1+e^{-y_i(w^{\top}x_i+c)}\bigr)
+   \;+\; \rho\,\lVert w\rVert_{1}
+   \;+\; \tfrac{1-\rho}{2}\,\lVert w\rVert_{2}^{2}.
+
+The first term is the data-fit (logistic) loss; the **L1** term
+:math:`\lVert w\rVert_{1}=\sum_j |w_j|` is what forces coefficients to exactly zero and
+so performs the selection, while the **L2** term
+:math:`\lVert w\rVert_{2}^{2}=\sum_j w_j^{2}` shrinks the coefficients of correlated
+features together. The ratio :math:`\rho` (the ``l1_ratio``, set to 0.5 in the course)
+balances the two penalties, and :math:`C` controls the overall regularization strength,
+a smaller :math:`C` meaning stronger regularization (the course uses :math:`C=0.1`).
+
+Because the model is linear, its selected features split neatly into positive and
+negative predictors of the class.
 
 
 Comparing the approaches
