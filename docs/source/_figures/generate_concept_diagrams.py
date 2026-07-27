@@ -7,7 +7,8 @@ be freely regenerated and restyled.
 Requires: numpy, scipy, matplotlib, scikit-learn and umap-learn.
 Run:  python generate_concept_diagrams.py
 It writes pca_concept.png, ica_concept.png, digits_comparison.png, nmds_shepard.png,
-feature_clustering_concept.png and elastic_net_objective.png next to this script.
+feature_clustering_concept.png, elastic_net_objective.png and stability_tradeoff.png
+next to this script.
 """
 import os
 import warnings
@@ -180,5 +181,27 @@ fig.text(0.5, 0.5, elastic_net, ha="center", va="center", fontsize=19)
 fig.savefig(os.path.join(HERE, "elastic_net_objective.png"), dpi=200,
             bbox_inches="tight", pad_inches=0.2); plt.close()
 
+# ---------------- Accuracy vs feature-selection stability (stability optimization) ----------------
+# Illustrative curves: accuracy peaks at one C while stability keeps falling, so a
+# smaller C can be more stable at nearly the same accuracy.
+lc = np.linspace(-2, 0, 10)
+Cvals = 10.0 ** lc
+accuracy = np.array([0.80, 0.88, 0.93, 0.96, 0.975, 0.98, 0.975, 0.96, 0.93, 0.89])
+stability = np.array([0.86, 0.83, 0.79, 0.74, 0.69, 0.63, 0.57, 0.52, 0.48, 0.45])
+imax = int(np.argmax(accuracy))
+fig, ax = plt.subplots(figsize=(6.6, 4.3))
+ax.plot(Cvals, accuracy, "-o", color="#3a6ea5", lw=2, ms=5, label="validation accuracy")
+ax.plot(Cvals, stability, "-o", color="#e08a1e", lw=2, ms=5,
+        label="feature-selection stability")
+ax.axvline(Cvals[imax], color="#d1495b", ls="--", lw=1.3, alpha=0.7)
+ax.plot(Cvals[imax], accuracy[imax], "s", color="#d1495b", ms=12, label="accuracy-optimal C")
+ax.set_xscale("log")
+ax.set_xlabel("regularization hyperparameter C"); ax.set_ylabel("score")
+ax.set_ylim(0.4, 1.02); ax.grid(alpha=0.25)
+ax.legend(loc="lower left", fontsize=9)
+ax.set_title("Optimizing accuracy alone can miss more stable solutions", fontsize=10.5)
+plt.savefig(os.path.join(HERE, "stability_tradeoff.png"), dpi=130,
+            bbox_inches="tight", pad_inches=0.1); plt.close()
+
 print("saved pca_concept.png, ica_concept.png, digits_comparison.png, nmds_shepard.png, "
-      "feature_clustering_concept.png, elastic_net_objective.png")
+      "feature_clustering_concept.png, elastic_net_objective.png, stability_tradeoff.png")
