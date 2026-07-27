@@ -6,8 +6,8 @@ be freely regenerated and restyled.
 
 Requires: numpy, scipy, matplotlib, scikit-learn and umap-learn.
 Run:  python generate_concept_diagrams.py
-It writes pca_concept.png, ica_concept.png, digits_comparison.png, nmds_shepard.png
-and feature_clustering_concept.png next to this script.
+It writes pca_concept.png, ica_concept.png, digits_comparison.png, nmds_shepard.png,
+feature_clustering_concept.png and elastic_net_objective.png next to this script.
 """
 import os
 import warnings
@@ -168,5 +168,17 @@ cbar.set_label("correlation between features")
 plt.savefig(os.path.join(HERE, "feature_clustering_concept.png"), dpi=130,
             bbox_inches="tight", pad_inches=0.1); plt.close()
 
+# ---------------- Elastic-net objective (rendered formula image) ----------------
+# GitHub renders .rst without a math engine, so the formula is shipped as an image
+# (as the course does for the ReliefF formula) to stay visible everywhere.
+elastic_net = (r"$\min_{w,\,c}\ \ "
+               r"C\sum_{i=1}^{n}\log\left(1+e^{-y_i(w^{T}x_i+c)}\right)"
+               r"\ +\ \rho\,\|w\|_1"
+               r"\ +\ \frac{1-\rho}{2}\,\|w\|_2^{2}$")
+fig = plt.figure(figsize=(8.2, 1.25))
+fig.text(0.5, 0.5, elastic_net, ha="center", va="center", fontsize=19)
+fig.savefig(os.path.join(HERE, "elastic_net_objective.png"), dpi=200,
+            bbox_inches="tight", pad_inches=0.2); plt.close()
+
 print("saved pca_concept.png, ica_concept.png, digits_comparison.png, nmds_shepard.png, "
-      "feature_clustering_concept.png")
+      "feature_clustering_concept.png, elastic_net_objective.png")
