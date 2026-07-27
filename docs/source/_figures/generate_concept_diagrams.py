@@ -1,19 +1,29 @@
-"""Generate the PCA and ICA concept diagrams used in feature_transformation.rst.
+"""Generate the concept diagrams used in feature_transformation.rst.
 
-The figures are drawn from synthetic data (no third-party images), so they can be
-freely regenerated and restyled. Requires numpy, matplotlib and scikit-learn.
+All figures are drawn from synthetic data or from a standard bundled dataset
+(scikit-learn's ``digits``), so they carry no third-party image copyright and can
+be freely regenerated and restyled.
 
+Requires: numpy, scipy, matplotlib, scikit-learn and umap-learn.
 Run:  python generate_concept_diagrams.py
-It writes pca_concept.png and ica_concept.png next to this script.
+It writes pca_concept.png, ica_concept.png, digits_comparison.png and
+nmds_shepard.png next to this script.
 """
 import os
+import warnings
 from itertools import permutations
 
+warnings.filterwarnings("ignore")
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from sklearn.decomposition import FastICA
+from scipy.spatial.distance import pdist
+from sklearn.datasets import load_digits, make_swiss_roll
+from sklearn.decomposition import PCA, FastICA
+from sklearn.manifold import TSNE, MDS
+from sklearn.isotonic import IsotonicRegression
+import umap
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -85,4 +95,49 @@ fig.tight_layout(rect=[0, 0, 1, 0.95])
 plt.savefig(os.path.join(HERE, "ica_concept.png"), dpi=130,
             bbox_inches="tight", pad_inches=0.1); plt.close()
 
-print("saved pca_concept.png and ica_concept.png")
+# ---------------- PCA vs t-SNE vs UMAP (same data, three embeddings) ----------------
+digits = load_digits()
+Xd, yd = digits.data, digits.target          # 1797 x 64, ten classes 0-9
+emb_pca = PCA(n_components=2).fit_transform(Xd)
+emb_tsne = TSNE(n_components=2, init="pca", perplexity=30,
+                random_state=0).fit_transform(Xd)
+emb_umap = umap.UMAP(n_components=2, random_state=0).fit_transform(Xd)
+
+panels = [("PCA (linear)", emb_pca), ("t-SNE", emb_tsne), ("UMAP", emb_umap)]
+fig, axes = plt.subplots(1, 3, figsize=(12, 4.3), constrained_layout=True)
+for ax, (name, emb) in zip(axes, panels):
+    sc = ax.scatter(emb[:, 0], emb[:, 1], c=yd, cmap="tab10", s=8, alpha=0.8,
+                    edgecolor="none")
+    ax.set_title(name, fontsize=12)
+    ax.set_xticks([]); ax.set_yticks([])
+fig.suptitle("The same data (handwritten digits, 0-9) embedded three ways", fontsize=13)
+cbar = fig.colorbar(sc, ax=axes.ravel().tolist(), ticks=range(10),
+                    fraction=0.02, pad=0.01)
+cbar.set_label("digit class")
+plt.savefig(os.path.join(HERE, "digits_comparison.png"), dpi=130,
+            bbox_inches="tight", pad_inches=0.15); plt.close()
+
+# ---------------- NMDS Shepard diagram (rank-order preservation) ----------------
+Xr, _ = make_swiss_roll(n_samples=110, noise=0.15, random_state=0)
+metric = MDS(n_components=2, metric=True, n_init=4, random_state=0,
+             normalized_stress="auto").fit_transform(Xr)
+# non-metric MDS, initialized from the metric solution so it does not collapse
+emb_nmds = MDS(n_components=2, metric=False, n_init=1, max_iter=1000, random_state=0,
+               normalized_stress="auto").fit_transform(Xr, init=metric)
+d_orig, d_emb = pdist(Xr), pdist(emb_nmds)
+
+fig, ax = plt.subplots(figsize=(5.4, 5))
+ax.scatter(d_orig, d_emb, s=9, alpha=0.30, color="#3a86a8", edgecolor="none")
+ir = IsotonicRegression().fit(d_orig, d_emb)
+xs = np.linspace(d_orig.min(), d_orig.max(), 200)
+ax.plot(xs, ir.predict(xs), color="#d1495b", lw=2.5,
+        label="rank-order (monotonic) fit")
+ax.set_xlabel("distance between two samples in the original space")
+ax.set_ylabel("distance in the 2-D NMDS embedding")
+ax.set_title("NMDS Shepard diagram: embedding distances rise\n"
+             "monotonically with the original distances", fontsize=10.5)
+ax.legend(loc="upper left", fontsize=9); ax.grid(alpha=0.2)
+plt.savefig(os.path.join(HERE, "nmds_shepard.png"), dpi=130,
+            bbox_inches="tight", pad_inches=0.1); plt.close()
+
+print("saved pca_concept.png, ica_concept.png, digits_comparison.png, nmds_shepard.png")

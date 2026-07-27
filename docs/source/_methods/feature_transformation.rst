@@ -101,6 +101,14 @@ of distances does not, however, guarantee that the *local* neighborhoods are
 trustworthy, so it is good practice to cross-check them with a neighborhood
 contingency table.
 
+.. figure:: ../_figures/nmds_shepard.png
+   :align: center
+   :width: 430px
+
+   A Shepard diagram checks the fit: every point is a pair of samples, and NMDS keeps
+   the embedding distances rising monotonically with the original distances. The
+   stress measures how much the points scatter around this rank-order trend.
+
 
 t-Distributed stochastic neighbor embedding (t-SNE)
 ---------------------------------------------------
@@ -136,6 +144,17 @@ and repeating the analysis with a few random seeds.
 
 Choosing a method
 -----------------
+
+Seeing the methods side by side helps in choosing between them. The figure below
+reduces the same dataset with PCA, t-SNE and UMAP: the linear PCA leaves the classes
+overlapping, while the nonlinear t-SNE and UMAP separate them into distinct groups.
+
+.. figure:: ../_figures/digits_comparison.png
+   :align: center
+   :width: 750px
+
+   The same handwritten-digit data reduced to two dimensions three ways. PCA keeps the
+   digit classes overlapping; t-SNE and UMAP pull them apart into clear clusters.
 
 The table below summarizes, at a glance, which method tends to fit which task and
 whether it can project new samples onto an existing embedding.
