@@ -65,7 +65,6 @@ html_logo = "_figures/logo2.png"
 
 html_title = "DimRed Course"
 html_theme_options = {
-    "logo_only": True,
     "repository_url": "https://github.com/HelmholtzAI-Consultants-Munich/DimRed-Course",
     "use_repository_button": True,
     "use_fullscreen_button": True,
