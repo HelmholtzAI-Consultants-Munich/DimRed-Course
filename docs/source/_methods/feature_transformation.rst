@@ -24,6 +24,13 @@ is a linear combination of all original features, and the components are ordered
 the amount of variance they explain, so the first few give the best low-dimensional
 summary of the dominant variation in the data.
 
+.. figure:: ../_figures/pca_concept.png
+   :align: center
+   :width: 450px
+
+   PCA finds orthogonal directions of maximum variance: PC1 captures the most, PC2
+   the next most.
+
 - The **cumulative explained-variance ratio** is commonly used to decide how many
   components to keep (e.g. enough to retain 75 % of the variance).
 - PCA is **unsupervised** and a natural first step for visualization and quality
@@ -40,6 +47,12 @@ ICA is also **linear**, but optimizes a different criterion: instead of merely
 stronger condition), and is well suited to non-Gaussian sources. The classic
 intuition is the *source-separation* ("cocktail party") problem: recovering
 independent original signals (e.g. two voices) from observed mixtures.
+
+.. figure:: ../_figures/ica_concept.png
+   :align: center
+   :width: 600px
+
+   ICA unmixes the observed mixtures back into their independent sources.
 
 - Unlike PCA, the components have **no inherent order** and depend on the random
   initialization.
