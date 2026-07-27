@@ -1,4 +1,4 @@
-"""Generate the concept diagrams used in feature_transformation.rst.
+"""Generate the concept diagrams used in the method pages.
 
 All figures are drawn from synthetic data or from a standard bundled dataset
 (scikit-learn's ``digits``), so they carry no third-party image copyright and can
@@ -6,8 +6,8 @@ be freely regenerated and restyled.
 
 Requires: numpy, scipy, matplotlib, scikit-learn and umap-learn.
 Run:  python generate_concept_diagrams.py
-It writes pca_concept.png, ica_concept.png, digits_comparison.png and
-nmds_shepard.png next to this script.
+It writes pca_concept.png, ica_concept.png, digits_comparison.png, nmds_shepard.png
+and feature_clustering_concept.png next to this script.
 """
 import os
 import warnings
@@ -140,4 +140,33 @@ ax.legend(loc="upper left", fontsize=9); ax.grid(alpha=0.2)
 plt.savefig(os.path.join(HERE, "nmds_shepard.png"), dpi=130,
             bbox_inches="tight", pad_inches=0.1); plt.close()
 
-print("saved pca_concept.png, ica_concept.png, digits_comparison.png, nmds_shepard.png")
+# ---------------- Data-driven feature clustering (feature aggregation) ----------------
+rng = np.random.default_rng(3)
+n = 200
+groups = [7, 6, 5, 6]                        # feature-group sizes (24 features total)
+cols = []
+for size in groups:
+    z = rng.normal(size=n)                   # one latent signal shared within the group
+    for _ in range(size):
+        cols.append(z * rng.uniform(0.75, 1.0) + 0.45 * rng.normal(size=n))
+Ff = np.column_stack(cols)
+Cf = np.corrcoef(Ff.T)
+
+fig, ax = plt.subplots(figsize=(5.6, 5))
+im = ax.imshow(Cf, cmap="RdBu_r", vmin=-1, vmax=1)
+b = 0
+for size in groups:                          # outline each discovered feature cluster
+    ax.add_patch(plt.Rectangle((b - 0.5, b - 0.5), size, size, fill=False,
+                               edgecolor="k", lw=2))
+    b += size
+ax.set_xticks([]); ax.set_yticks([])
+ax.set_xlabel("features (e.g. genes)"); ax.set_ylabel("features (e.g. genes)")
+ax.set_title("Data-driven aggregation: group correlated features,\n"
+             "then summarize each group into one feature", fontsize=10.5)
+cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+cbar.set_label("correlation between features")
+plt.savefig(os.path.join(HERE, "feature_clustering_concept.png"), dpi=130,
+            bbox_inches="tight", pad_inches=0.1); plt.close()
+
+print("saved pca_concept.png, ica_concept.png, digits_comparison.png, nmds_shepard.png, "
+      "feature_clustering_concept.png")
