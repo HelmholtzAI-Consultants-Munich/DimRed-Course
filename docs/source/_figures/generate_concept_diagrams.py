@@ -28,9 +28,15 @@ fig, ax = plt.subplots(figsize=(5, 5))
 ax.scatter(X[:, 0], X[:, 1], s=14, alpha=0.45, color="#6699cc", edgecolor="none")
 for k, (val, vec) in enumerate(zip(vals, vecs.T)):
     L = 2.6 * np.sqrt(val); col = ["#d1495b", "#edae49"][k]
-    ax.annotate("", xy=mu + L * vec, xytext=mu,
+    tip = mu + L * vec
+    ax.annotate("", xy=tip, xytext=mu,
                 arrowprops=dict(arrowstyle="-|>", lw=3, color=col))
-    ax.text(*(mu + L * vec * 1.13), f"PC{k+1}", color=col, fontsize=13,
+    perp = np.array([-vec[1], vec[0]])
+    if k == 0:                                  # PC1: beside the middle of the shaft
+        pos = mu + 0.55 * L * vec + 0.75 * perp
+    else:                                       # PC2: just beyond the short arrow tip
+        pos = tip + 0.5 * vec
+    ax.text(pos[0], pos[1], f"PC{k+1}", color=col, fontsize=13,
             fontweight="bold", ha="center", va="center")
 ax.set_aspect("equal"); ax.grid(alpha=0.2)
 ax.set_xlabel("feature 1"); ax.set_ylabel("feature 2")
