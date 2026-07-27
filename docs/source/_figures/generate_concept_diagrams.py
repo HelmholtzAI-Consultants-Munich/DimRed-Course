@@ -35,7 +35,8 @@ for k, (val, vec) in enumerate(zip(vals, vecs.T)):
 ax.set_aspect("equal"); ax.grid(alpha=0.2)
 ax.set_xlabel("feature 1"); ax.set_ylabel("feature 2")
 ax.set_title("PCA: components are the directions of maximum variance", fontsize=10.5)
-plt.tight_layout(); plt.savefig(os.path.join(HERE, "pca_concept.png"), dpi=130); plt.close()
+plt.savefig(os.path.join(HERE, "pca_concept.png"), dpi=130,
+            bbox_inches="tight", pad_inches=0.1); plt.close()
 
 # ---------------- ICA concept (source separation) ----------------
 rng = np.random.default_rng(0)
@@ -75,6 +76,7 @@ for c in range(2):
     axes[2][c].set_xlabel("time", fontsize=10)
 fig.suptitle("ICA: separating independent signals from their mixture", fontsize=12.5)
 fig.tight_layout(rect=[0, 0, 1, 0.95])
-plt.savefig(os.path.join(HERE, "ica_concept.png"), dpi=130); plt.close()
+plt.savefig(os.path.join(HERE, "ica_concept.png"), dpi=130,
+            bbox_inches="tight", pad_inches=0.1); plt.close()
 
 print("saved pca_concept.png and ica_concept.png")
