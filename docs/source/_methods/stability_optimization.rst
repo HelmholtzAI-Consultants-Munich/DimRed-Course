@@ -1,9 +1,9 @@
 Stability and optimization
 ==========================
 
-This final topic builds on feature selection. A selection method is only trustworthy
-if it is **stable**: a small change in the training data should not lead to an entirely
-different set of selected features. This page introduces a simple way to measure that
+This final topic builds on feature selection. A feature-selection result is more
+trustworthy and easier to interpret when it is **stable**: a small change in the
+training data should not lead to an entirely different set of selected features. This page introduces a simple way to measure that
 stability and then shows how to bring it into hyperparameter optimization, instead of
 optimizing prediction accuracy on its own.
 
@@ -67,7 +67,7 @@ high-dimensional biological data.
 On harder problems the two goals genuinely compete. Restricting the task to a smaller
 pool of candidate genes, the same combined criterion can push stability up to around
 0.9, but only at the cost of some validation and test accuracy. Which balance to strike
-is then a deliberate modeling choice.
+between accuracy and stability is then a deliberate modeling choice.
 
 
 In practice

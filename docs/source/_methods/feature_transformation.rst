@@ -1,11 +1,11 @@
 Feature transformation
 ======================
 
-Feature transformation methods reduce dimensionality by mapping the original
-features onto a smaller set of new features (*components*), each a combination of
-the original ones. They are usually the first tool for exploring and visualizing
-high-dimensional data, for example gene-expression data with tens of thousands of
-features per sample, which cannot be inspected directly.
+Feature transformation methods reduce dimensionality by mapping the original data
+onto a smaller set of new features (*components*) that summarize the most relevant
+information. They are commonly used to explore and visualize high-dimensional data,
+for example gene-expression data with tens of thousands of features per sample,
+which cannot be inspected directly.
 
 .. figure:: ../_figures/feature_transformation.png
    :align: center
@@ -15,10 +15,11 @@ features per sample, which cannot be inspected directly.
    few of them gives a compact, lower-dimensional view of the data.
 
 The methods on this page fall into two groups. The **linear** methods, PCA and ICA,
-build every component as a plain weighted sum of the original features, which keeps
-them fast and easy to interpret. The **nonlinear** methods, NMDS, t-SNE and UMAP,
-can follow curved structure in the data and often expose clusters that the linear
-methods blur together, at the cost of a less direct interpretation.
+build every component as a plain weighted sum of the original features, making them
+computationally efficient and straightforward to analyze through their feature
+weights. The **nonlinear** methods, NMDS, t-SNE and UMAP, can follow nonlinear
+structure in the data and often expose clusters that the linear methods cannot
+represent, at the cost of a less direct interpretation.
 
 
 Principal component analysis (PCA)
@@ -66,7 +67,7 @@ observed mixtures.
 Two consequences follow from this goal. Because the components are no longer tied to
 variance, ICA imposes **no inherent ordering** on its outputs, and the exact result
 can shift with the random initialization. In return, it can pull apart overlapping
-effects **regardless of how much variance each one contributes**, which frequently
+effects **even when some contribute relatively little variance**, which frequently
 yields components that are easier to interpret than PCA's.
 
 

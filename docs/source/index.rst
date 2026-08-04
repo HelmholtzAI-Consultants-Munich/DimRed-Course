@@ -19,6 +19,7 @@ without having to read through lengthy external references.
    :maxdepth: 1
    :caption: DIMENSIONALITY REDUCTION METHODS
 
+   _methods/introduction.rst
    _methods/feature_transformation.rst
    _methods/autoencoders.rst
    _methods/feature_aggregation.rst

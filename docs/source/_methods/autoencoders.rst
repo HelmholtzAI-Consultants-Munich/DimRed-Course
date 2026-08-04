@@ -1,12 +1,13 @@
 Autoencoders
 ============
 
-Autoencoders are **neural networks that learn a low-dimensional latent
-representation of the data, from which the original input can be reconstructed as
-accurately as possible**. That latent representation is a derived,
-reduced-dimensionality feature representation, a *nonlinear* alternative to the
-classical feature-transformation methods, learned by a network rather than by a
-fixed algorithm.
+Autoencoders are a **nonlinear feature-transformation** method: **neural networks
+that learn a low-dimensional latent representation of the data, from which the
+original input can be reconstructed as accurately as possible**. That latent
+representation is a derived, reduced-dimensionality set of features, learned by a
+network rather than by a fixed algorithm, which places autoencoders in the same
+family as PCA, ICA and the other feature-transformation methods, but able to capture
+nonlinear structure that those linear methods cannot.
 
 
 Architecture
@@ -26,8 +27,11 @@ An autoencoder has two parts, trained together:
 
 Training minimizes a **reconstruction loss**, which measures how closely the
 decoder's output matches the original input. The width of the latent layer sets the
-reduced dimensionality (e.g. 2 for visualization). The final layers are typically
-linear so they can cover the full range of output values.
+reduced dimensionality (e.g. 2 for visualization). The decoder's output layer should
+match the range of the input data: for the continuous, unrestricted gene-expression
+values used in this course a linear output layer is typically appropriate, whereas
+for bounded data (for example values in [0, 1]) other output activations such as a
+sigmoid are often used.
 
 
 Applying the model to new data
@@ -51,8 +55,8 @@ A **variational autoencoder** adds **regularization** so that the latent space h
 useful, well-organized structure. Instead of encoding each instance as a single
 point, the encoder outputs a **distribution** (a mean and a diagonal covariance),
 and the latent vector *z* is **sampled** from it. Because slightly different samples
-must decode to similar outputs, the latent space becomes smoother and more
-meaningful.
+must decode to similar outputs, this encourages a smoother and better-organized
+latent space.
 
 The VAE loss combines two terms:
 
