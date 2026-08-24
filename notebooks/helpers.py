@@ -55,3 +55,41 @@ def get_data(go, data, feature_names, rd = pd.read_csv("../data/goslim_to_genes.
     s = rd.iloc[w, 1].split(',')
     dat1raw = df.loc[:, df.columns.intersection(s)]
     return(dat1raw)
+
+def clara_kmedoids(data, n_clusters, n_samples=5, sample_size=None, random_state=None):
+    """Cluster the rows of `data` with k-medoids, using the CLARA strategy.
+
+    k-medoids picks actual data points as cluster centres, so it works from
+    pairwise distances alone. Solving it exactly needs the full distance
+    matrix, which is not possible here: with ~28,000 genes that matrix would
+    be about 6 GB.
+
+    CLARA (Kaufman and Rousseeuw, 1990) avoids that. It draws a small random
+    sample, solves k-medoids on the sample only, and then assigns every
+    remaining point to its nearest medoid. Repeating this over several samples
+    and keeping the cheapest result gives a good clustering at a fraction of
+    the cost.
+
+    Returns (labels, medoid_indices).
+    """
+    from sklearn.metrics import pairwise_distances
+    import kmedoids
+
+    rng = np.random.default_rng(random_state)
+    n_points = data.shape[0]
+    if sample_size is None:
+        sample_size = min(n_points, 40 + 2 * n_clusters)
+
+    best_cost, best_medoids = np.inf, None
+    for _ in range(n_samples):
+        sample = rng.choice(n_points, size=sample_size, replace=False)
+        distances = pairwise_distances(data[sample])
+        result = kmedoids.fasterpam(distances, n_clusters, random_state=random_state)
+        medoids = sample[result.medoids]
+        # Total distance from every point to its nearest medoid.
+        cost = pairwise_distances(data, data[medoids]).min(axis=1).sum()
+        if cost < best_cost:
+            best_cost, best_medoids = cost, medoids
+
+    labels = pairwise_distances(data, data[best_medoids]).argmin(axis=1)
+    return labels, best_medoids
