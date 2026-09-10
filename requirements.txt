@@ -1,8 +1,8 @@
 matplotlib
-numpy<2.0
+numpy
 pandas
 scikit-learn
-scikit-learn-extra
+kmedoids
 umap-learn
 cca-zoo
 seaborn
