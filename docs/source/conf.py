@@ -61,7 +61,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # a list of builtin themes.
 #
 html_theme = "sphinx_book_theme"
-html_logo = "_figures/logo2.png"
+html_logo = "_figures/logo_dimred.png"
 
 html_title = "DimRed Course"
 html_theme_options = {
