@@ -30,4 +30,4 @@ For those interested in exploring a topic in greater depth, we also provide refe
 Contributions
 ==============
 Comments and input are very welcome! If you have a suggestion or think something
-should be changed, please open an issue or submit a pull request on our [GitHub repository](https://github.com/HelmholtzAI-Consultants-Munich/DimRed-Course/blob/main/) 
+should be changed, please open an issue or submit a pull request on our `GitHub repository <https://github.com/HelmholtzAI-Consultants-Munich/DimRed-Course/>`_.
