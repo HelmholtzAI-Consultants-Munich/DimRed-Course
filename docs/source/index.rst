@@ -10,9 +10,9 @@ workflows: it compresses high-dimensional data into a smaller set of informative
 features, making the data easier to visualize, model, and interpret.
 
 This course shows how to perform dimensionality reduction in practice. Each topic
-comes as a hands-on Jupyter notebook, and this documentation provides concise
-summaries of the main concepts behind each method, so you can grasp the key ideas
-without having to read through lengthy external references.
+comes as a hands-on Jupyter notebook in the GitHub repository, and this documentation provides concise
+summaries of the main concepts behind each method, so you can grasp the key ideas.
+For those interested in exploring a topic in greater depth, we also provide references to additional resources.
 
 
 .. toctree::
