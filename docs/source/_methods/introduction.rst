@@ -2,11 +2,18 @@ Introduction
 ============
 
 Dimensionality reduction compresses high-dimensional data into a smaller set of
-informative features, making it easier to visualize, model, and interpret. Many real
-datasets, for example gene-expression profiles with tens of thousands of features per
-sample, cannot be inspected directly, and a large fraction of their features are
-redundant or noisy. Reducing the number of features helps to reveal the structure
-that matters, speeds up downstream analyses, and lowers the risk of overfitting.
+informative features, making it easier to visualize, model, and interpret. Reducing
+the number of features helps to reveal the structure that matters, speeds up
+downstream analyses, and lowers the risk of overfitting.
+
+High-dimensional data is affected by the **curse of dimensionality**: as the number
+of features grows, the data points become sparse and the distances between them less
+informative, so genuine patterns are harder to find and models overfit more easily.
+Working in a smaller, well-chosen feature space avoids much of this problem. A common
+application is **gene-expression analysis**, where each sample can carry tens of
+thousands of features that cannot be inspected directly; dimensionality reduction is a
+routine first step there, and likewise for imaging, text, and sensor data, for
+exploration, visualization, and preprocessing before modeling.
 
 The methods in this course fall into three broad families, distinguished by what they
 do with the original features.
@@ -47,24 +54,24 @@ At a glance
 
 .. list-table::
    :header-rows: 1
-   :widths: 26 24 22 28
+   :widths: 28 24 22 26
 
-   * - Family
-     - Original features kept?
-     - New features created?
-     - Typical strength
-   * - Feature transformation
-     - no
-     - yes (*components*)
-     - Compact summaries, good for visualization
-   * - Feature aggregation
-     - no (grouped)
-     - yes (group summaries)
-     - Compact, yet close to the original meaning
+   * - Method
+     - Keeps original features?
+     - Creates new features?
+     - Interpretability
    * - Feature selection
-     - yes (a subset)
-     - no
-     - Interpretability: keeps the actual measurements
+     - Yes
+     - No
+     - High
+   * - Feature transformation
+     - No
+     - Yes
+     - Lower
+   * - Feature aggregation
+     - No
+     - Yes
+     - Moderate (depends on method)
 
 The following pages describe the individual methods in each family, followed by a
 page on assessing the stability of feature selection and optimizing its
