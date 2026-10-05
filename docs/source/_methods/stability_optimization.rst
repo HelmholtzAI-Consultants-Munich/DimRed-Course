@@ -1,10 +1,11 @@
-Stability and optimization
+Stability optimization
 ==========================
 
 This final topic builds on feature selection. A feature-selection result is more
 trustworthy and easier to interpret when it is **stable**: a small change in the
-training data should not lead to an entirely different set of selected features. This page introduces a simple way to measure that
-stability and then shows how to bring it into hyperparameter optimization, instead of
+training data should not lead to an entirely different set of selected features.
+This page introduces a simple way to measure that stability 
+and then shows how to bring it into hyperparameter optimization, instead of
 optimizing prediction accuracy on its own.
 
 
