@@ -1,14 +1,14 @@
 Introduction
 ============
 
-Dimensionality reduction compresses high-dimensional data into a smaller set of
-informative features, making it easier to visualize, model, and interpret. Reducing
+Dimensionality reductioncondenses high-dimensional data into a smaller set of
+informative features, making it easier to visualize and model. Reducing
 the number of features helps to reveal the structure that matters, speeds up
 downstream analyses, and lowers the risk of overfitting.
 
 High-dimensional data is affected by the **curse of dimensionality**: as the number
 of features grows, the data points become sparse and the distances between them less
-informative, so genuine patterns are harder to find and models overfit more easily.
+informative, so underlying patterns are harder to find and models overfit more easily.
 Working in a smaller, well-chosen feature space avoids much of this problem. A common
 application is **gene-expression analysis**, where each sample can carry tens of
 thousands of features that cannot be inspected directly; dimensionality reduction is a
@@ -22,7 +22,7 @@ do with the original features.
 Feature transformation
 ----------------------
 
-Feature transformation **creates new features (*components*)** by combining or
+Feature transformation **creates new features (components)** by combining or
 re-expressing the original ones, keeping as much of the relevant information as
 possible. The linear methods (PCA and ICA) form each component as a weighted sum of
 the originals, while the nonlinear methods (NMDS, t-SNE, UMAP and **autoencoders**)
