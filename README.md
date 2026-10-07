@@ -6,7 +6,7 @@ This course aims at showcasing how to perform dimensionality reduction in practi
 
 Alternatively, you can set up an environment on your own machine as follows. Due to time restrictions, mentors cannot provide help with installation issues during the course.
 
-The course requires **Python 3.12**.
+The course requires **Python 3.13**.
 
 Setup steps (**not needed for Colab users**):
 
@@ -15,14 +15,14 @@ Setup steps (**not needed for Colab users**):
 
 With conda (e.g. from miniforge):
 ```
-conda create -n dimred python=3.12
+conda create -n dimred python=3.13
 conda activate dimred
 pip install -r requirements.txt
 ```
 
 Or with venv, if you do not have conda:
 ```
-python3.12 -m venv .venv
+python3.13 -m venv .venv
 source .venv/bin/activate      # on Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
