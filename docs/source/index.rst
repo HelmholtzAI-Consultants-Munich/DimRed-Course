@@ -6,8 +6,8 @@ A practical guide to dimensionality reduction
 =============================================
 
 Dimensionality reduction is a key step in many machine learning and data analysis
-workflows: it compresses high-dimensional data into a smaller set of informative
-features, making the data easier to visualize, model, and interpret.
+workflows: it condenses high-dimensional data into a smaller set of informative
+features, making the data easier to visualize and model.
 
 This course shows how to perform dimensionality reduction in practice. Each topic
 comes as a hands-on Jupyter notebook in the GitHub repository, and this documentation provides concise
