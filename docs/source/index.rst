@@ -9,10 +9,8 @@ Dimensionality reduction is a key step in many machine learning and data analysi
 workflows: it condenses high-dimensional data into a smaller set of informative
 features, making the data easier to visualize and model.
 
-This course shows how to perform dimensionality reduction in practice. Each topic
-comes as a hands-on Jupyter notebook in the GitHub repository, and this documentation provides concise
-summaries of the main concepts behind each method, so you can grasp the key ideas.
-For those interested in exploring a topic in greater depth, we also provide references to additional resources.
+This course shows how to perform hands-on dimensionality reduction on real-world datasets. It guides through each subtopic via a Jupyter notebook in the GitHub repository. This documentation provides concise
+summaries of the main concepts behind each method. For those interested in exploring specific approaches in greater depth, we also provide references to additional resources.
 
 
 .. toctree::
