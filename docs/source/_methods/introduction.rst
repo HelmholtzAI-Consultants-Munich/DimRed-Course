@@ -14,25 +14,24 @@ application is **gene expression analysis**, where each data instance can carry 
 thousands of features that cannot be inspected directly. Dimensionality reduction is a
 routine first step in gene expression studies, and likewise for the analysis of image, text, and sensor data. It is used for data exploration, visualization, and preprocessing steps to prepare modeling.
 
-The methods in this course fall into three broad families, distinguished by what they
-do with the original features.
+The methods in this course fall into three broad families, differing in how they use the original features.
 
 
 Feature transformation
 ----------------------
 
-Feature transformation **creates new features (components)** by combining or
-re-expressing the original ones, keeping as much of the relevant information as
-possible. The linear methods (PCA and ICA) form each component as a weighted sum of
-the originals, while the nonlinear methods (NMDS, t-SNE, UMAP and **autoencoders**)
-can capture more complex, nonlinear structure. Autoencoders are the neural-network,
-nonlinear member of this same family.
+Feature transformation methods **compute new features (components)** based on all original features, 
+keeping as much of the relevant information as
+possible. In linear methods (PCA and ICA), each component is a weighted sum of
+the original features, while nonlinear methods (NMDS, t-SNE, UMAP and **autoencoders**)
+can capture more complex, nonlinear mappings and combinations of orogonal features. 
+Autoencoders are the neural-network member of this family.
 
 
 Feature aggregation
 -------------------
 
-Feature aggregation **groups related original features and summarizes each group**
+Feature aggregation methods **group related original features and summarize each group**
 into a single aggregated feature, for example the mean expression of a set of genes
 that share a biological function. The result is far more compact while staying close
 to the original measurements.
@@ -41,11 +40,11 @@ to the original measurements.
 Feature selection
 -----------------
 
-Feature selection **keeps a subset of the original features** and discards the rest.
-The reduced data is still expressed in the original, fully interpretable features,
-which is valuable when it matters *which* measurements drive a result. A final topic,
-the **stability** of feature selection, then looks at how reliable that chosen subset
-is across different training data.
+Feature selection methods **keep a subset of the original features** and discard the rest.
+The low-dimensional data instances are still represented by original features,
+which is valuable if interpretability of visualization  or modeling results matters. A final topic,
+the **stability** of feature selection, takes into acocunt how reliable that chosen subset
+is across different training data for the task at hand.
 
 
 At a glance
