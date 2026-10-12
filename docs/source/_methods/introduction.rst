@@ -1,19 +1,18 @@
 Introduction
 ============
 
-Dimensionality reductioncondenses high-dimensional data into a smaller set of
-informative features, making it easier to visualize and model. Reducing
+Dimensionality reduction condenses high-dimensional data into a smaller set of
+informative features, making them easier to visualize and model. Reducing
 the number of features helps to reveal the structure that matters, speeds up
 downstream analyses, and lowers the risk of overfitting.
 
-High-dimensional data is affected by the **curse of dimensionality**: as the number
+High-dimensional data are affected by the **curse of dimensionality**: as the number
 of features grows, the data points become sparse and the distances between them less
 informative, so underlying patterns are harder to find and models overfit more easily.
-Working in a smaller, well-chosen feature space avoids much of this problem. A common
-application is **gene-expression analysis**, where each sample can carry tens of
-thousands of features that cannot be inspected directly; dimensionality reduction is a
-routine first step there, and likewise for imaging, text, and sensor data, for
-exploration, visualization, and preprocessing before modeling.
+Working in a smaller, well-chosen feature space avoids this problem to a large extent. A common
+application is **gene expression analysis**, where each data instance can carry tens of
+thousands of features that cannot be inspected directly. Dimensionality reduction is a
+routine first step in gene expression studies, and likewise for the analysis of image, text, and sensor data. It is used for data exploration, visualization, and preprocessing steps to prepare modeling.
 
 The methods in this course fall into three broad families, distinguished by what they
 do with the original features.
